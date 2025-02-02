@@ -1,4 +1,4 @@
-# do i need to add index in big query table to get a faster query speed?
+### Do i need to add index in big query table to get a faster query speed?
 
 No, you do not need to add traditional indexes in BigQuery. BigQuery is a columnar, distributed data warehouse that automatically optimizes query performance through its architecture. It handles data storage and retrieval differently from traditional relational databases.
 
