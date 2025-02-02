@@ -9,3 +9,6 @@ Denormalization: Flatten your data where possible to reduce complex joins.
 Materialized Views: Use materialized views for pre-aggregated data.
 Query Optimization: Optimize SQL queries with proper filtering, avoiding SELECT *, and using approximate aggregation functions like APPROX_COUNT_DISTINCT.
 Let me know if you need help implementing any of these strategies.
+
+
+### https://www.youtube.com/watch?v=T2CS9a63LOM
