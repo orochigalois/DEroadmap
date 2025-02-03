@@ -14,6 +14,8 @@ Let me know if you need help implementing any of these strategies.
 ### https://www.youtube.com/watch?v=T2CS9a63LOM
 
 ### why we have both where and having in sql
+reference: https://www.youtube.com/watch?v=BHwzDmr6d7s&t=1s
+
 *WHERE Clause:*
 
 Purpose: Filters rows before any grouping or aggregation occurs.
