@@ -12,3 +12,19 @@ Let me know if you need help implementing any of these strategies.
 
 
 ### https://www.youtube.com/watch?v=T2CS9a63LOM
+
+### why we have both where and having in sql
+*WHERE Clause:*
+
+Purpose: Filters rows before any grouping or aggregation occurs.
+Used with: Regular columns (not aggregate functions like COUNT(), SUM(), etc.).
+
+*HAVING Clause:*
+
+Purpose: Filters groups after aggregation (GROUP BY) has been applied.
+Used with: Aggregate functions (COUNT(), SUM(), AVG(), etc.).
+
+SELECT department, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 10;
