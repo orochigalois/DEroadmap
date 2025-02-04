@@ -68,6 +68,21 @@ Cons :
 
 Best for : Automated workflows, large datasets, and integration into existing scripts and pipelines.
 
+bq SQL Code
+- Ease : Medium
+- Efficiency : High
+- Optimization : Medium
+
+Pros :
+- Directly use SQL within BigQuery.
+- Easy to embed in SQL-based workflows.
+- Good for users comfortable with SQL.
+
+Cons :
+- Limited to SQL’s capabilities for error handling and complex transformations.
+- May require additional steps for schema management.
+
+Best for : SQL-centric environments and when working within BigQuery’s SQL editor or embedding in other SQL scripts.
 
 ### what is Partition Inference Mode meaning here
 ![alt text](image.png)
