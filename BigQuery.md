@@ -30,3 +30,71 @@ SELECT department, COUNT(*) AS employee_count
 FROM employees
 GROUP BY department
 HAVING COUNT(*) > 10;
+
+
+### how many ways to Load Data from GCS to BigQuery
+reference: https://medium.com/@santosh_beora/loading-data-from-gcs-to-bigquery-a-comprehensive-guide-62b5d3abea53
+
+BigQuery Console
+- Ease : High
+- Efficiency : Medium
+- Optimization : Low
+
+Pros :
+- User-friendly, no coding required.
+- Suitable for quick, one-time data loads.
+- Good for small to medium-sized data.
+
+Cons :
+- Manual process, not suitable for automation.
+- Limited optimization options.
+- Not ideal for large-scale or frequent data loads.
+
+Best for : Quick, ad-hoc data loads or if you’re new to BigQuery.
+
+bq Command-Line Tool
+- Ease : Medium
+- Efficiency : High
+- Optimization : Medium
+
+Pros :
+- Scriptable and automatable.
+- Efficient for handling large datasets.
+- Can be integrated into CI/CD pipelines.
+
+Cons :
+- Requires familiarity with command-line tools.
+- Slight learning curve for those not used to scripting.
+
+Best for : Automated workflows, large datasets, and integration into existing scripts and pipelines.
+
+
+### what is Partition Inference Mode meaning here
+![alt text](image.png)
+Partition Inference Mode in this context refers to how BigQuery will identify and interpret partition information from the data stored in Google Cloud Storage (GCS), typically when loading partitioned data based on folder structure or file naming conventions.
+
+⚡ Explanation of the Options:
+Automatically Infer Types (Selected):
+
+BigQuery will automatically detect partition columns and their data types based on folder or file names.
+Example:
+bash
+Copy
+Edit
+gs://bucket/sales_data/date=2023-01-01/region=US/file.csv
+BigQuery will infer:
+date as a DATE type
+region as a STRING type
+All Columns Are Strings:
+
+BigQuery will treat all partition columns as STRING, regardless of the actual data format.
+Useful if you prefer to handle type conversion manually later.
+Provide My Own:
+
+You can manually specify the partition columns and their data types.
+Ideal for strict schema control or when automatic inference doesn’t behave as expected.
+🚀 When to Use Each Mode:
+Automatically Infer Types: Quick, efficient, works well for standardized file structures.
+All Columns Are Strings: When data types are inconsistent or not critical initially.
+Provide My Own: For precise control, especially in production environments with strict data governance.
+Let me know if you'd like more examples or details!
