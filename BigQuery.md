@@ -50,7 +50,7 @@ Cons :
 - Limited optimization options.
 - Not ideal for large-scale or frequent data loads.
 
-Best for : Quick, ad-hoc data loads or if you’re new to BigQuery.
+Best for : Quick, ***ad-hoc*** data loads or if you’re new to BigQuery.
 
 bq Command-Line Tool
 - Ease : Medium
