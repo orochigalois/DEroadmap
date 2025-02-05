@@ -66,7 +66,7 @@ Cons :
 - Requires familiarity with command-line tools.
 - Slight learning curve for those not used to scripting.
 
-Best for : Automated workflows, large datasets, and integration into existing scripts and pipelines.
+Best for : Automated workflows, ***large datasets***, and integration into existing scripts and pipelines.
 
 bq SQL Code
 - Ease : Medium
