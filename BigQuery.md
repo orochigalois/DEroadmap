@@ -114,4 +114,11 @@ All Columns Are Strings: When data types are inconsistent or not critical initia
 Provide My Own: For precise control, especially in production environments with strict data governance.
 Let me know if you'd like more examples or details!
 
-### https://www.youtube.com/watch?v=qZwffdeu1sY
+### 
+
+### 2025-02-06 [GCP Data Engineer Mock interview](https://www.youtube.com/watch?v=qZwffdeu1sY)
+
+_______________________________________________________________
+### 2025-02-06 22:07:45 Could you please explain the high-level architecture of BigQuery?
+BigQuery is a data warehousing tool designed for analytical purposes. It has a ***Aseparation of storage and compute***, meaning they operate independently. BigQuery uses columnar storage (OLAP) instead of traditional row-based (OLTP) storage. This enables efficient querying because it scans only the specific columns needed, improving performance.
+_______________________________________________________________
