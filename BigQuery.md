@@ -38,3 +38,27 @@ _______________________________________________________________
 reference:[https://medium.com/@santosh_beora/loading-data-from-gcs-to-bigquery-a-comprehensive-guide-62b5d3abea53](https://medium.com/@santosh_beora/loading-data-from-gcs-to-bigquery-a-comprehensive-guide-62b5d3abea53)
 xxxxx
 _______________________________________________________________
+### 2025-02-06 22:19:54 How can we optimize performance in BigQuery?
+reference: xxxxx
+
+Partitioning: Organize large tables by date or other logical partitions to reduce the amount of data scanned.
+Clustering: Group related data together to improve query performance when filtering by clustered columns.
+Query Optimization: Use filters (WHERE conditions), avoid SELECT *, and limit data processed.
+_______________________________________________________________
+### 2025-02-06 22:20:46 In terms of cost optimization, how can we save costs in BigQuery?
+reference: [Cost optimization best practices for BigQuery](https://www.youtube.com/watch?v=cZgTavxWO2k)
+
+Reserved Slots: Purchase slots in advance for predictable workloads to reduce costs.
+Optimize Queries: Use partitioning and clustering to reduce data scanned.
+Storage Optimization: Move rarely accessed data to cheaper storage like Cloud Storage (Nearline/Coldline).
+_______________________________________________________________
+### 2025-02-06 23:08:11 For example, if we have thousands of datasets and tables that people are not using anymore, how can we identify the unused datasets and tables? What would be your action plan and point of view to save costs in such cases?
+reference: xxxxx
+
+1. Identify Unused Tables:
+- Use BigQuery Information Schema to check the last access times.
+- Analyze Cloud Audit Logs for usage patterns.
+2. Action Plan:
+- Archive unused tables to Cloud Storage (Nearline or Coldline) to reduce costs.
+- Regularly review and clean up unused datasets.
+_______________________________________________________________
