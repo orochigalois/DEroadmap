@@ -57,6 +57,7 @@ reference: xxxxx
 
 1. Identify Unused Tables:
 - Use BigQuery Information Schema to check the last access times.
+![alt text](image-1.png)
 - Analyze Cloud Audit Logs for usage patterns.
 2. Action Plan:
 - Archive unused tables to Cloud Storage (Nearline or Coldline) to reduce costs.
