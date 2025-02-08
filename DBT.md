@@ -49,3 +49,24 @@ reference: xxxxx
 
 ![alt text](image-6.png)
 _______________________________________________________________
+### 2025-02-08 22:28:44 What's the difference between view and table?
+reference: xxxxx
+
+👉 **A view is not a physical table; it is just a stored query.**
+
+-   The data **is not stored** in BigQuery (or other databases).
+-   Every time you query the view, it **reruns the underlying SQL**.
+-   It is **always up-to-date** because it dynamically fetches data from the source.
+
+### **🚀 Pros of `view`**
+
+✅ **No storage cost** -- Since it doesn't store data, you save storage fees in BigQuery.
+✅ **Always up-to-date** -- Every query pulls the latest data from the source.
+✅ **Good for lightweight transformations** -- Ideal for simple data reshaping.
+
+### **⚠️ Cons of `view`**
+
+❌ **Slow for large datasets** -- Since it recomputes every time, queries take longer.
+❌ **No indexing or optimization** -- Performance may be worse than a table.
+❌ **Query cost can increase** -- Every query runs the full SQL, leading to higher BigQuery processing
+_______________________________________________________________
