@@ -31,10 +31,16 @@ _______________________________________________________________
 ![alt text](image-3.png)
 reference: xxxxx
 
-by default, dbt uses Append-Only strategy, New records are inserted without checking for duplicates. 
-before:
+by default, dbt uses Append-Only strategy, New records are inserted without checking for duplicates.   
+before:  
 ![alt text](image-4.png) 
-after dbt run:
+after dbt run:  
 ![alt text](image-5.png)
+_______________________________________________________________
+### 2025-02-08 21:55:11 do you use any dbt packages by any chance?
+reference: xxxxx
 
+dbt_utils – A must-have package that provides utility macros for common transformations like safe casting, generating surrogate keys, pivoting, and unpivoting.
+
+dbt-unit-testing - allows writing unit tests in YAML with mocked inputs and expected outputs.
 _______________________________________________________________
