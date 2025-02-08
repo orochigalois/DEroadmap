@@ -71,3 +71,8 @@ reference: xxxxx
 ❌ **No indexing or optimization** -- Performance may be worse than a table.
 ❌ **Query cost can increase** -- Every query runs the full SQL, leading to higher BigQuery processing
 _______________________________________________________________
+### 2025-02-09 09:49:05 what is the difference between `dbt run` and `dbt build`?
+reference: xxxxx
+
+The key difference between `dbt run` and `dbt build` is that `dbt build` is a more comprehensive command that includes `dbt run`, `dbt test`, and `dbt snapshot`, whereas `dbt run` only executes models.
+_______________________________________________________________
