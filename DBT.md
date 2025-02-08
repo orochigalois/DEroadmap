@@ -76,3 +76,9 @@ reference: xxxxx
 
 The key difference between `dbt run` and `dbt build` is that `dbt build` is a more comprehensive command that includes `dbt run`, `dbt test`, and `dbt snapshot`, whereas `dbt run` only executes models.
 _______________________________________________________________
+### 2025-02-09 10:00:33 what is `schema` equivalent in bigquery?
+reference: xxxxx
+
+schema is interchangeable with the BigQuery concept dataset
+database is interchangeable with the BigQuery concept of project
+_______________________________________________________________
