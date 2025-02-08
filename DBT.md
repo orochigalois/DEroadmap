@@ -21,6 +21,7 @@ _______________________________________________________________
 reference: [https://youtu.be/G3t0EF6hMkQ?t=83](https://youtu.be/G3t0EF6hMkQ?t=83)
 
 A DBT model is a .sql file that contains SELECT statements, WITH clauses, or Common Table Expressions (CTEs). When you run a DBT model, a table or view is created based on the materialization property.
+![alt text](image-7.png)
 _______________________________________________________________
 ### 2025-02-07 21:29:28 what is dbt macro
 reference: xxxxx
