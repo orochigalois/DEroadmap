@@ -11,12 +11,7 @@ reference: xxxxx
 
 xxxxx
 _______________________________________________________________
-### 2025-02-07 21:20:36 how to use `bq load` ingest a 2G csv into bigquery
-reference: xxxxx
 
-![alt text](image-2.png)
-xxxxx
-_______________________________________________________________
 ### 2025-02-07 21:25:21 What is a DBT Model?
 reference: [https://youtu.be/G3t0EF6hMkQ?t=83](https://youtu.be/G3t0EF6hMkQ?t=83)
 

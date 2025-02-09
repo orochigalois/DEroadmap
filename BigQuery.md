@@ -63,6 +63,12 @@ reference: xxxxx
 - Archive unused tables to Cloud Storage (Nearline or Coldline) to reduce costs.
 - Regularly review and clean up unused datasets.
 _______________________________________________________________
+### 2025-02-07 21:20:36 how to use `bq load` ingest a 2G csv into bigquery
+reference: xxxxx
+
+![alt text](image-2.png)
+xxxxx
+_______________________________________________________________
 ### 2025-02-09 18:16:56 What are Slots in BigQuery?
 reference: xxxxx
 
