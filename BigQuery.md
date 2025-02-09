@@ -63,3 +63,96 @@ reference: xxxxx
 - Archive unused tables to Cloud Storage (Nearline or Coldline) to reduce costs.
 - Regularly review and clean up unused datasets.
 _______________________________________________________________
+### 2025-02-09 18:16:56 What are Slots in BigQuery?
+reference: xxxxx
+
+A slot in Google BigQuery is a unit of computational capacity that BigQuery uses to process queries.
+
+**🔹 1️⃣ How Slots Work**
+-------------------------
+
+-   Each query **consumes slots** based on its complexity.
+-   Queries run in parallel using available slots.
+-   **More slots → Faster queries**, but at a higher cost.
+
+**🔹 2️⃣ Types of Slot Allocation in BigQuery**
+-----------------------------------------------
+
+BigQuery offers **two main slot allocation modes**:
+
+| Mode | Description | Pricing |
+| --- |  --- |  --- |
+| **On-Demand Pricing (Default)** | BigQuery automatically assigns slots based on query demand. | Pay **per TB scanned** (e.g., `$5 per TB`). |
+| --- |  --- |  --- |
+| **Capacity-Based (Slot Reservation)** | You purchase **dedicated slots** for predictable performance. | Fixed cost (e.g., **500 slots** at **$10,000/month**). |
+
+**🔹 3️⃣ Understanding Slot Reservation**
+-----------------------------------------
+
+Slot reservation allows you to **buy and allocate slots** to control query performance.
+
+### **Example: Buying Slots**
+
+If your queries are **slow due to high demand**, you can reserve slots:
+
+```
+sh
+CopyEdit
+
+`bq mk --reservation --project_id=my_project --slots=500 my_reservation
+`
+
+```
+
+📌 **This reserves 500 slots for your queries.**
+
+### **Assigning Slots to a Query**
+
+You can force a query to use a specific reservation:
+
+```
+sql
+CopyEdit
+
+`SELECT * FROM my_dataset.my_table
+OPTIONS (resource_group='my_reservation');
+`
+
+```
+
+* * * *
+
+**🔹 4️⃣ How Many Slots Does a Query Use?**
+-------------------------------------------
+
+-   **Simple queries** (e.g., small `SELECT`) → Use **few slots**.
+-   **Complex joins, aggregations, large data scans** → Use **many slots**.
+
+📌 **To check slot usage in BigQuery UI:**
+
+1.  Run a query.
+2.  Go to **Query Execution Details** → **Performance** → **Slot Usage**.
+
+* * * *
+
+**🔹 5️⃣ Slot Pricing & Cost Optimization**
+-------------------------------------------
+
+| Approach | Cost | When to Use? |
+| --- |  --- |  --- |
+| **On-Demand (Default)** | Pay per **TB scanned** | For low or unpredictable query workloads. |
+| --- |  --- |  --- |
+| **Flex Slots** | **Short-term (per second) slot purchase** | For **temporary high demand** (cheaper than on-demand for heavy queries). |
+| **Flat-Rate Slots** | Fixed cost per month | For **consistent, high-volume workloads**. |
+
+* * * *
+
+**🔹 6️⃣ Best Practices for Slot Optimization**
+-----------------------------------------------
+
+✔ **Use partitions & clustering** to reduce slot consumption.
+✔ **Limit `ORDER BY`, `JOIN`, `GROUP BY` on large datasets.**
+✔ **Precompute & cache results** to reduce slot usage.
+✔ **Monitor slot usage in BigQuery UI** → Identify **slow queries**.
+✔ **Consider Flex Slots for cost savings** if running heavy queries.
+_______________________________________________________________
