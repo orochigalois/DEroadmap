@@ -87,4 +87,43 @@ reference: [How to use dbt Snapshots to track data history](https://youtu.be/SNt
 
 `dbt snapshot` is a feature in **dbt** that helps track historical changes in **slowly changing dimensions (SCDs)** within a database. It captures and preserves changes to records over time by maintaining **previous versions** of data whenever updates occur.
 _______________________________________________________________
+### 2025-02-09 12:35:55 what is Jinja templating language
+reference: xxxxx
 
+Jinja is a **templating language** used to dynamically generate text, typically **HTML, SQL, or configuration files**. It allows embedding logic, variables, loops, and conditionals inside a text-based document.
+
+Jinja is widely used in:
+
+-   **Web development** (e.g., Flask, Django templates)
+-   **Infrastructure automation** (e.g., Ansible playbooks)
+-   **Data transformation** (e.g., dbt for SQL generation)
+```
+Hello, {{ name }}!
+```
+
+```html
+{% for user in users %}
+  - {{ user.name }} ({{ user.email }})
+{% endfor %}
+```
+
+```html
+{% if age >= 18 %}
+  You are an adult.
+{% else %}
+  You are a minor.
+{% endif %}
+```
+
+```yaml
+{{ name | upper }}  # Converts to uppercase
+{{ price | round(2) }}  # Rounds to 2 decimal places
+{{ date | date('Y-m-d') }}  # Formats a date
+```
+
+```html
+{% macro greet(name) %}
+  Hello, {{ name }}!
+{% endmacro %}
+```
+_______________________________________________________________
