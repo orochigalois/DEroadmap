@@ -82,3 +82,9 @@ reference: xxxxx
 schema is interchangeable with the BigQuery concept dataset
 database is interchangeable with the BigQuery concept of project
 _______________________________________________________________
+### 2025-02-09 11:05:18 what is dbt snapshot?
+reference: [How to use dbt Snapshots to track data history](https://youtu.be/SNtM_RUa5G4?t=469)
+
+`dbt snapshot` is a feature in **dbt** that helps track historical changes in **slowly changing dimensions (SCDs)** within a database. It captures and preserves changes to records over time by maintaining **previous versions** of data whenever updates occur.
+_______________________________________________________________
+
