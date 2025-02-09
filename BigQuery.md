@@ -163,7 +163,7 @@ OPTIONS (resource_group='my_reservation');
 ✔ **Consider Flex Slots for cost savings** if running heavy queries.
 _______________________________________________________________
 ### 2025-02-09 20:13:50 Difference Between a Normal View and a Materialized View in BigQuery
-reference: xxxxx
+reference: [STANDARD vs. MATERIALIZED views in SQL | BigQuery](https://www.youtube.com/watch?v=wnFBAE4auVc&t=121s)
 
 **🔹 1️⃣ Normal View (Standard View)**
 
