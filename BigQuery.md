@@ -246,7 +246,6 @@ In BigQuery, `APPROX_COUNT_DISTINCT` is a **faster alternative** to `COUNT(DISTI
     -   **`COUNT(DISTINCT)` stores every unique value**, increasing **RAM usage**.
     -   **`APPROX_COUNT_DISTINCT` stores only a compressed hash of values**, reducing memory needs.
 
-* * * *
 
 ### **📌 Performance Comparison**
 
@@ -280,7 +279,7 @@ FROM my_dataset.events;
 -   **5-50x faster** 🚀.
 -   **Slight margin of error (~0.1% - 0.5%)**, but much **cheaper**.
 
-* * * *
+
 
 ### **💡 When to Use `APPROX_COUNT_DISTINCT`?**
 
@@ -330,4 +329,49 @@ CopyEdit
 -   **Controls access** to sensitive data (only exposes selected fields).
 -   **Users can query the view** without accessing the base table.
 -   **Data is always fresh** (query runs in real-time).
+_______________________________________________________________
+### 2025-02-09 21:29:14 how can I only expose the authorised view to the user but hide the table
+reference: xxxxx
+
+**🔹 1️⃣ Remove Direct Access to `my_dataset.customers`**
+
+
+By default, if the user has `roles/bigquery.dataViewer` on `my_dataset`, they can access **all tables** in the dataset, including `customers`.
+
+### **✅ Solution: Remove Dataset-Level Permissions**
+
+To **remove their access to the base table (`customers`)**:
+
+```
+sh
+CopyEdit
+
+`bq remove-iam-policy-binding my_project:my_dataset\
+   --member=user:external_user@gmail.com\
+   --role=roles/bigquery.dataViewer
+`
+
+```
+
+📌 **This ensures the user has no direct access to `my_dataset.customers`**.
+
+
+
+**🔹 2️⃣ Grant Access ONLY to the Authorized View**
+
+
+Now, **grant access to just the Authorized View (`auth_view_customer`)**:
+
+```
+sh
+CopyEdit
+
+`bq add-iam-policy-binding my_project:my_dataset.auth_view_customer\
+   --member=user:external_user@gmail.com\
+   --role=roles/bigquery.dataViewer
+`
+
+```
+
+📌 **Now, the user can only see `auth_view_customer`, not the `customers` table**.
 _______________________________________________________________
