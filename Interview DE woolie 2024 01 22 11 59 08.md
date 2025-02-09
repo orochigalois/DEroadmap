@@ -21,23 +21,22 @@ _______________________________________________________________
 ### 2025-02-09 16:47:07 say if you've got a junior developer on your team and they saw the issue and they just want to delete the duplicate customers so as a senior data engineer, how would you coach or respond to your Junior teammate who just wants to just delete the duplicate rows, what would you say
 reference: xxxxx
 
-**
 
 1.  Understanding the Root Cause:
 
 -   If we simply delete the duplicates without understanding how they got there, the problem could easily recur. It's essential that we diagnose the issue properly to prevent it from happening again. This might involve reviewing the ETL pipeline, checking the transformation logic in DBT, or investigating the source data.
 
-3.  Ensuring Data Integrity:
+2.  Ensuring Data Integrity:
 
 -   Deleting rows without fully understanding their context might lead to unintended data loss or inconsistencies. We need to ensure that the rows we're deleting are truly duplicates and not legitimate records that just happen to look similar. This often requires a thorough analysis of the data.
 
-5.  Building a Sustainable Solution:
+3.  Building a Sustainable Solution:
 
 -   Instead of just fixing the symptom, let's focus on addressing the root cause by implementing robust deduplication logic in our pipeline. We can use tools like DBT to enforce uniqueness, and set up tests to catch these issues early in the development process. This way, we can ensure that our solution is not only correct but also sustainable.
 
-7.  Learning Opportunity:
+4.  Learning Opportunity:
 
 -   This is a great opportunity for us to dive deeper into data quality practices and learn more about how to prevent issues like this in the future. Let's work together to trace the data lineage, identify where the duplication is happening, and fix the process rather than just the data.
 
-**
+
 _______________________________________________________________

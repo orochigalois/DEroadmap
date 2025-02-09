@@ -50,6 +50,11 @@ reference: xxxxx
 
 ![alt text](image-6.png)
 _______________________________________________________________
+### 2025-02-09 16:59:40 How to Use dbt_utils.unique_combination_of_columns in dbt?
+reference: xxxxx
+
+![alt text](image-10.png)
+_______________________________________________________________
 ### 2025-02-08 22:28:44 What's the difference between view and table?
 reference: xxxxx
 
