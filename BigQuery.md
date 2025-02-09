@@ -75,14 +75,14 @@ reference: xxxxx
 A slot in Google BigQuery is a unit of computational capacity that BigQuery uses to process queries.
 
 **🔹 1️⃣ How Slots Work**
--------------------------
+
 
 -   Each query **consumes slots** based on its complexity.
 -   Queries run in parallel using available slots.
 -   **More slots → Faster queries**, but at a higher cost.
 
 **🔹 2️⃣ Types of Slot Allocation in BigQuery**
------------------------------------------------
+
 
 BigQuery offers **two main slot allocation modes**:
 
@@ -93,7 +93,7 @@ BigQuery offers **two main slot allocation modes**:
 | **Capacity-Based (Slot Reservation)** | You purchase **dedicated slots** for predictable performance. | Fixed cost (e.g., **500 slots** at **$10,000/month**). |
 
 **🔹 3️⃣ Understanding Slot Reservation**
------------------------------------------
+
 
 Slot reservation allows you to **buy and allocate slots** to control query performance.
 
@@ -129,7 +129,7 @@ OPTIONS (resource_group='my_reservation');
 * * * *
 
 **🔹 4️⃣ How Many Slots Does a Query Use?**
--------------------------------------------
+
 
 -   **Simple queries** (e.g., small `SELECT`) → Use **few slots**.
 -   **Complex joins, aggregations, large data scans** → Use **many slots**.
@@ -142,7 +142,7 @@ OPTIONS (resource_group='my_reservation');
 * * * *
 
 **🔹 5️⃣ Slot Pricing & Cost Optimization**
--------------------------------------------
+
 
 | Approach | Cost | When to Use? |
 | --- |  --- |  --- |
@@ -154,7 +154,7 @@ OPTIONS (resource_group='my_reservation');
 * * * *
 
 **🔹 6️⃣ Best Practices for Slot Optimization**
------------------------------------------------
+
 
 ✔ **Use partitions & clustering** to reduce slot consumption.
 ✔ **Limit `ORDER BY`, `JOIN`, `GROUP BY` on large datasets.**
@@ -166,7 +166,7 @@ _______________________________________________________________
 reference: xxxxx
 
 **🔹 1️⃣ Normal View (Standard View)**
---------------------------------------
+
 
 A **normal view** in BigQuery is a **logical layer** that stores **only the query definition**, not the data. Every time you query a normal view, **BigQuery re-runs the underlying query**.
 
@@ -195,7 +195,7 @@ WHERE total_spent > 100;
 * * * *
 
 **🔹 2️⃣ Materialized View**
-----------------------------
+
 
 A **materialized view (MV)** stores **the query results as precomputed data**.
 Instead of recomputing the query every time, **BigQuery reads the precomputed results**, making queries much **faster and cheaper**.
@@ -291,4 +291,43 @@ FROM my_dataset.events;
 | ✅ Need **fast & cheap** results (minor inaccuracy is okay) | `APPROX_COUNT_DISTINCT(column)` |
 | ✅ Working with **large datasets** | `APPROX_COUNT_DISTINCT(column)` |
 | ✅ Need **real-time analytics** | `APPROX_COUNT_DISTINCT(column)` |
+_______________________________________________________________
+### 2025-02-09 21:16:15 What is an Authorized View?
+reference: xxxxx
+
+An **Authorized View** allows you to **securely share specific columns or rows** from a dataset **without granting full access** to the base table.
+
+### **📌 Example: Creating an Authorized View**
+
+Let's say **we have a `customers` table**, but we **only want to share `customer_id` and `name`** with external users.
+
+```
+sql
+CopyEdit
+
+`CREATE VIEW my_dataset.auth_view_customer AS
+SELECT customer_id, name
+FROM my_dataset.customers;
+`
+
+```
+
+Now, **grant access to the view** without exposing the full table:
+
+```
+sh
+CopyEdit
+
+`bq add-iam-policy-binding my_project:my_dataset\
+  --member=user:external_user@gmail.com\
+  --role=roles/bigquery.dataViewer
+`
+
+```
+
+✅ **Benefits of Authorized Views**:
+
+-   **Controls access** to sensitive data (only exposes selected fields).
+-   **Users can query the view** without accessing the base table.
+-   **Data is always fresh** (query runs in real-time).
 _______________________________________________________________
