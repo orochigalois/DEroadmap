@@ -12,7 +12,9 @@ _______________________________________________________________
 reference: xxxxx
 
 - Built-in Tests: DBT offers built-in tests that can help you identify duplicates. You can use unique tests to ensure that a specific column, like customer\_id, is unique across the dataset. If the test fails, it's a clear indication that duplicates exist.
+![alt text](image-9.png)
 
 - Custom Tests: You can create custom tests in DBT to check for specific conditions that might lead to duplicates. For example, you can write a test to check for rows where a combination of fields (like customer\_name and email) should be unique but isn't.
+![alt text](image-8.png)
 
 _______________________________________________________________
