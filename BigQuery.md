@@ -222,3 +222,73 @@ GROUP BY customer_id;
 -   **🔄 Freshness:** **Not real-time** (MV updates automatically but on a schedule).
 -   **⚙️ Indexing & Partitioning:** **Supports clustering and partitioning**.
 _______________________________________________________________
+### 2025-02-09 21:06:02 why APPROX_COUNT_DISTINCT can speed up query?
+reference: xxxxx
+
+In BigQuery, `APPROX_COUNT_DISTINCT` is a **faster alternative** to `COUNT(DISTINCT column)`, and it speeds up queries because:
+
+1.  **✅ Uses Approximate Algorithms (HyperLogLog++)**
+
+    -   Instead of **scanning the entire dataset**, BigQuery uses **probabilistic counting** (HyperLogLog++) to estimate the distinct count.
+    -   This reduces **CPU usage** and **memory consumption**.
+2.  **✅ Avoids Expensive Sorting & Deduplication**
+
+    -   `COUNT(DISTINCT column)` requires:
+        -   **Sorting the data** (which is expensive for large tables).
+        -   **Deduplication** (which increases processing time).
+    -   `APPROX_COUNT_DISTINCT(column)` **does not require sorting**, making it much **faster**.
+3.  **✅ Works in Streaming & Partitioned Queries**
+
+    -   **`COUNT(DISTINCT)` is slow** in **streaming** or **partitioned queries** because it needs **global deduplication**.
+    -   `APPROX_COUNT_DISTINCT` works **efficiently** even in **distributed queries**.
+4.  **✅ Uses Less Memory & Compute Resources**
+
+    -   **`COUNT(DISTINCT)` stores every unique value**, increasing **RAM usage**.
+    -   **`APPROX_COUNT_DISTINCT` stores only a compressed hash of values**, reducing memory needs.
+
+* * * *
+
+### **📌 Performance Comparison**
+
+#### **1️⃣ Normal `COUNT(DISTINCT)`**
+
+```
+sql
+CopyEdit
+
+`SELECT COUNT(DISTINCT user_id)
+FROM my_dataset.events;
+`
+
+```
+
+-   **Slower** for large tables (due to sorting & deduplication).
+-   **Expensive** in terms of processing costs.
+
+#### **2️⃣ Faster `APPROX_COUNT_DISTINCT`**
+
+```
+sql
+CopyEdit
+
+`SELECT APPROX_COUNT_DISTINCT(user_id)
+FROM my_dataset.events;
+`
+
+```
+
+-   **5-50x faster** 🚀.
+-   **Slight margin of error (~0.1% - 0.5%)**, but much **cheaper**.
+
+* * * *
+
+### **💡 When to Use `APPROX_COUNT_DISTINCT`?**
+
+| **Use Case** | **Recommended Function** |
+| --- |  --- |
+| ✅ Need **100% accuracy** | `COUNT(DISTINCT column)` |
+| --- |  --- |
+| ✅ Need **fast & cheap** results (minor inaccuracy is okay) | `APPROX_COUNT_DISTINCT(column)` |
+| ✅ Working with **large datasets** | `APPROX_COUNT_DISTINCT(column)` |
+| ✅ Need **real-time analytics** | `APPROX_COUNT_DISTINCT(column)` |
+_______________________________________________________________
