@@ -137,3 +137,11 @@ It is especially useful for **dbt projects** because it can: ✔ **Lint** SQL mo
 ✔ **Enforce team-wide SQL style guides**
 ✔ **Validate Jinja-templated SQL in dbt models**
 _______________________________________________________________
+### 2025-02-09 16:37:25 How to Run dbt in Debug Mode?
+reference: xxxxx
+
+- dbt debug
+- dbt run --debug
+- logs/dbt.log
+- dbt test --debug
+_______________________________________________________________
