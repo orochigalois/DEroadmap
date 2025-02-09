@@ -162,3 +162,63 @@ OPTIONS (resource_group='my_reservation');
 ✔ **Monitor slot usage in BigQuery UI** → Identify **slow queries**.
 ✔ **Consider Flex Slots for cost savings** if running heavy queries.
 _______________________________________________________________
+### 2025-02-09 20:13:50 Difference Between a Normal View and a Materialized View in BigQuery
+reference: xxxxx
+
+**🔹 1️⃣ Normal View (Standard View)**
+--------------------------------------
+
+A **normal view** in BigQuery is a **logical layer** that stores **only the query definition**, not the data. Every time you query a normal view, **BigQuery re-runs the underlying query**.
+
+### **📌 Example: Creating a Normal View**
+
+```
+sql
+CopyEdit
+
+`CREATE VIEW my_dataset.customer_view AS
+SELECT customer_id, name, total_spent
+FROM my_dataset.customers
+WHERE total_spent > 100;
+`
+
+```
+
+📌 **Key Characteristics of Normal Views**
+
+-   **💾 Storage:** **No additional storage** (only metadata is stored).
+-   **⚡ Performance:** **Slower** because the underlying query runs every time.
+-   **💲 Cost:** **Higher cost** as you pay for scanning the base table every time.
+-   **🔄 Freshness:** **Always up to date** (real-time).
+-   **⚙️ Indexing & Partitioning:** **Not supported.**
+
+* * * *
+
+**🔹 2️⃣ Materialized View**
+----------------------------
+
+A **materialized view (MV)** stores **the query results as precomputed data**.
+Instead of recomputing the query every time, **BigQuery reads the precomputed results**, making queries much **faster and cheaper**.
+
+### **📌 Example: Creating a Materialized View**
+
+```
+sql
+CopyEdit
+
+`CREATE MATERIALIZED VIEW my_dataset.mv_customer_summary AS
+SELECT customer_id, COUNT(*) AS order_count, SUM(total_spent) AS total_spent
+FROM my_dataset.orders
+GROUP BY customer_id;
+`
+
+```
+
+📌 **Key Characteristics of Materialized Views**
+
+-   **💾 Storage:** Stores **precomputed** query results (takes up space).
+-   **⚡ Performance:** **Faster queries** (precomputed results reduce processing time).
+-   **💲 Cost:** **Lower cost** (reads from the MV instead of scanning the whole table).
+-   **🔄 Freshness:** **Not real-time** (MV updates automatically but on a schedule).
+-   **⚙️ Indexing & Partitioning:** **Supports clustering and partitioning**.
+_______________________________________________________________
