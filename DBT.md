@@ -127,3 +127,13 @@ Hello, {{ name }}!
 {% endmacro %}
 ```
 _______________________________________________________________
+### 2025-02-09 15:45:14 What is SQLFluff?
+reference: xxxxx
+
+[SQLFluff](https://github.com/sqlfluff/sqlfluff) is an **open-source SQL linter and formatter** that ensures SQL code follows **best practices, style consistency, and readability**.
+
+It is especially useful for **dbt projects** because it can: ✔ **Lint** SQL models to detect syntax errors
+✔ **Auto-format** SQL files for better readability
+✔ **Enforce team-wide SQL style guides**
+✔ **Validate Jinja-templated SQL in dbt models**
+_______________________________________________________________
