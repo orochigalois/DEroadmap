@@ -7,3 +7,12 @@ reference: xxxxx
 - data source is wrong, have duplicate row, need to communicate with the other squad, let them know
 - ETL pipeline has a bug
 _______________________________________________________________
+### 2025-02-09 14:37:39 are there any aspects of DBT which might be able to help you in looking this issue
+
+reference: xxxxx
+
+- Built-in Tests: DBT offers built-in tests that can help you identify duplicates. You can use unique tests to ensure that a specific column, like customer\_id, is unique across the dataset. If the test fails, it's a clear indication that duplicates exist.
+
+- Custom Tests: You can create custom tests in DBT to check for specific conditions that might lead to duplicates. For example, you can write a test to check for rows where a combination of fields (like customer\_name and email) should be unique but isn't.
+
+_______________________________________________________________
