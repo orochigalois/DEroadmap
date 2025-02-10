@@ -402,3 +402,13 @@ reference: xxxxx
 | **Performance Boost** | If queries filter on **partition column** | If queries filter/sort on **clustered columns** |
 | --- |  --- |  --- |
 _______________________________________________________________
+### 2025-02-10 12:38:15 is it possible to createa partitioning on 'string' type column in bigquery?
+reference: xxxxx
+
+No, BigQuery does not support partitioning on a STRING column directly. Partitioning is only supported on DATE, TIMESTAMP, DATETIME, or INTEGER columns.
+_______________________________________________________________
+### 2025-02-10 22:29:42 I know MySQL uses three-valued logic -- TRUE, FALSE and UNKNOWN. Anything compared to NULL evaluates to the third value: UNKNOWN. That “anything” includes NULL itself! That’s why MySQL provides the IS NULL and IS NOT NULL operators to specifically check for NULL. My question is , is the big query having the same feature?
+reference: [Find Customer Referee](https://leetcode.com/problems/find-customer-referee/?envType=study-plan-v2&envId=top-sql-50)
+
+YES
+_______________________________________________________________
