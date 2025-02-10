@@ -145,3 +145,11 @@ reference: xxxxx
 - logs/dbt.log
 - dbt test --debug
 _______________________________________________________________
+### 2025-02-10 11:45:24 {{ source('xx', 'yy') }} vs {{ ref('zzz') }}
+reference: xxxxx
+
+- source: not managed by DBT, defined in yml like this:
+![alt text](image-11.png)
+
+- ref: reference DBT models that are managed and created by DBT, defined in models/
+_______________________________________________________________
