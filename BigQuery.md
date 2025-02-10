@@ -375,3 +375,30 @@ CopyEdit
 
 📌 **Now, the user can only see `auth_view_customer`, not the `customers` table**.
 _______________________________________________________________
+### 2025-02-10 12:33:05 Partitioning vs Clustering in BigQuery
+reference: xxxxx
+
+| Feature | Partitioning | Clustering |
+| --- |  --- |  --- |
+
+| **How it Works** | Divides a table into **separate partitions** | **Organizes data within partitions** for efficient filtering |
+| --- |  --- |  --- |
+
+| **Query Optimization** | Reduces the number of **rows scanned** | Reduces the number of **blocks read** |
+| --- |  --- |  --- |
+
+| **Best for** | Queries filtering on **date/time** or **integer ranges** | Queries filtering or sorting on **high-cardinality fields** |
+| --- |  --- |  --- |
+
+| **Max Columns** | **1 partition column** per table | **Up to 4 clustering columns** |
+| --- |  --- |  --- |
+
+| **Max Partitions** | **4,000 partitions per table** | No limit |
+| --- |  --- |  --- |
+
+| **Storage Cost** | Each partition is **stored separately** | Clustering **automatically sorts data inside partitions** |
+| --- |  --- |  --- |
+
+| **Performance Boost** | If queries filter on **partition column** | If queries filter/sort on **clustered columns** |
+| --- |  --- |  --- |
+_______________________________________________________________
