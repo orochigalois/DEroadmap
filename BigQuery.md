@@ -126,7 +126,7 @@ OPTIONS (resource_group='my_reservation');
 
 ```
 
-* * * *
+
 
 **🔹 4️⃣ How Many Slots Does a Query Use?**
 
@@ -139,7 +139,7 @@ OPTIONS (resource_group='my_reservation');
 1.  Run a query.
 2.  Go to **Query Execution Details** → **Performance** → **Slot Usage**.
 
-* * * *
+
 
 **🔹 5️⃣ Slot Pricing & Cost Optimization**
 
@@ -151,7 +151,7 @@ OPTIONS (resource_group='my_reservation');
 | **Flex Slots** | **Short-term (per second) slot purchase** | For **temporary high demand** (cheaper than on-demand for heavy queries). |
 | **Flat-Rate Slots** | Fixed cost per month | For **consistent, high-volume workloads**. |
 
-* * * *
+
 
 **🔹 6️⃣ Best Practices for Slot Optimization**
 
@@ -192,7 +192,7 @@ WHERE total_spent > 100;
 -   **🔄 Freshness:** **Always up to date** (real-time).
 -   **⚙️ Indexing & Partitioning:** **Not supported.**
 
-* * * *
+
 
 **🔹 2️⃣ Materialized View**
 
@@ -412,7 +412,7 @@ reference: [Find Customer Referee](https://leetcode.com/problems/find-customer-r
 
 YES
 _______________________________________________________________
-### 2025-02-11 14:36:32 You have 1000 files from GCS bucket into SFTP, any methods you can think of to improve the preformance?
+### 2025-02-11 14:36:32 You have 1000 files to load from GCS bucket into SFTP, any methods you can think of to improve the preformance?
 reference: xxxxx
 
 **1\. Use Parallel Transfers**
@@ -481,4 +481,208 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
     ```
 
 -   `-m` enables multi-threaded transfer.
+_______________________________________________________________
+### 2025-02-11 14:39:56 When you upload 1000 files from GCS bucket into SFTP, let's say the SFTP is unstable, means sometimes connection drops, what machanism you can design the solve this?
+reference: xxxxx
+
+### **1\. Implement a Retry Mechanism for Failures**
+
+-   **Automatic retries** when an upload fails due to connection loss.
+-   Use **exponential backoff** to reduce the load on the SFTP server.
+
+#### **Example: Python Retry Logic with `tenacity`**
+
+```
+python
+CopyEdit
+
+`import paramiko
+import time
+from google.cloud import storage
+from tenacity import retry, stop_after_attempt, wait_exponential
+
+# Retry up to 5 times with exponential backoff
+@retry(stop=stop_after_attempt(5), wait=wait_exponential(multiplier=2, min=1, max=16))
+def upload_to_sftp(file_name):
+    client = storage.Client()
+    bucket = client.bucket("your-bucket-name")
+    blob = bucket.blob(file_name)
+
+    try:
+        transport = paramiko.Transport(("sftp.server.com", 22))
+        transport.connect(username="user", password="password")
+        sftp = transport.open_sftp()
+
+        # Download from GCS and upload to SFTP
+        with sftp.file(f"/remote/path/{file_name}", "wb") as f:
+            f.write(blob.download_as_bytes())
+
+        sftp.close()
+        transport.close()
+        print(f"Uploaded: {file_name}")
+
+    except Exception as e:
+        print(f"Retrying upload for {file_name} due to error: {e}")
+        raise  # Triggers retry
+
+`
+
+```
+
+✅ **Why?**
+
+-   If the connection drops, it retries up to **5 times** with increasing wait times (**1s, 2s, 4s, ... up to 16s**).
+-   Uses **exponential backoff** to avoid overwhelming the SFTP server.
+
+
+
+### **2\. Implement File Transfer Checkpointing**
+
+-   Maintain a **log file (or database entry)** to track successfully uploaded files.
+-   On failure, **resume from the last successful file** instead of restarting.
+
+#### **Example: Using a JSON Log File for Resume**
+
+```
+python
+CopyEdit
+
+`import json
+
+LOG_FILE = "upload_log.json"
+
+def load_uploaded_files():
+    try:
+        with open(LOG_FILE, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
+
+def save_uploaded_file(file_name):
+    uploaded = load_uploaded_files()
+    uploaded.append(file_name)
+    with open(LOG_FILE, "w") as f:
+        json.dump(uploaded, f)
+
+uploaded_files = set(load_uploaded_files())
+for file_name in file_list:
+    if file_name not in uploaded_files:
+        upload_to_sftp(file_name)
+        save_uploaded_file(file_name)
+`
+
+```
+
+✅ **Why?**
+
+-   Prevents **duplicate uploads** if the script crashes.
+-   **Only uploads missing files** when restarted.
+
+
+
+### **3\. Use a Message Queue for Asynchronous Uploads**
+
+-   **Why?** Instead of processing all files in one go, push them into a queue and process **one at a time**, retrying failed tasks.
+-   **How?** Use **Cloud Pub/Sub** (GCP) or **RabbitMQ**.
+
+#### **Example: Using Cloud Pub/Sub**
+
+1.  **Publish file names to a queue**:
+
+    ```
+    python
+    CopyEdit
+
+    `from google.cloud import pubsub_v1
+
+    publisher = pubsub_v1.PublisherClient()
+    topic_path = publisher.topic_path("your-project-id", "upload-topic")
+
+    for file_name in file_list:
+        publisher.publish(topic_path, file_name.encode("utf-8"))
+    `
+
+    ```
+
+2.  **Worker retrieves files and uploads them**:
+
+    ```
+    python
+    CopyEdit
+
+    `from google.cloud import pubsub_v1
+
+    subscriber = pubsub_v1.SubscriberClient()
+    subscription_path = subscriber.subscription_path("your-project-id", "upload-sub")
+
+    def callback(message):
+        file_name = message.data.decode("utf-8")
+        try:
+            upload_to_sftp(file_name)
+            message.ack()  # Mark as successful
+        except:
+            message.nack()  # Retry later
+
+    subscriber.subscribe(subscription_path, callback=callback)
+    `
+
+    ```
+
+✅ **Why?**
+
+-   **Decouples processing**: If an upload fails, it stays in the queue until retried.
+-   **Ensures eventual delivery**, even if the SFTP is unstable.
+
+
+
+### **4\. Use `rsync` with Checksum Validation**
+
+-   If the SFTP server allows SSH, **`rsync` can resume transfers** when interrupted.
+-   **Command Example**:
+    ```
+    bash
+    CopyEdit
+
+    `rsync -avz --partial --progress /local/path/ user@sftp.server:/remote/path/
+    `
+
+    ```
+
+✅ **Why?**
+
+-   **Resumes interrupted uploads.**
+-   Uses **checksums to verify file integrity**.
+
+
+
+### **5\. Store Files Temporarily on GCE (Google Compute Engine)**
+
+-   Instead of **uploading directly from GCS to SFTP**, download **all files to a GCE VM** first.
+-   If the connection drops, resume from local storage instead of GCS.
+
+✅ **Why?**
+
+-   Reduces **GCS API calls**, making retry logic easier.
+-   **Faster recovery** after failure.
+
+
+
+### **Final Recommendation**
+
+| **Approach** | **Best For** | **Complexity** |
+| --- |  --- |  --- |
+| **Retry with exponential backoff** | Handling temporary connection drops | 🟢 Low |
+| --- |  --- |  --- |
+| **Logging uploaded files** | Preventing re-uploads on failure | 🟡 Medium |
+| **Using message queues** | Large-scale, distributed uploads | 🔴 High |
+| **Rsync (if SSH available)** | Resumable file transfers | 🟢 Low |
+| **Staging files in GCE** | High-volume, long-running transfers | 🔴 High |
+
+For your case, I recommend:
+
+1.  ✅ **Retry mechanism** (handles transient SFTP failures).
+2.  ✅ **Checkpointing (log or database)** (prevents duplicate work).
+3.  ✅ **Parallel uploads with controlled retries** (improves performance without overwhelming the server).
+
+Let me know if you need an implementation example for your exact setup! 🚀
 _______________________________________________________________
