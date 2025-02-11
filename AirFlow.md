@@ -94,3 +94,15 @@ with models.DAG(
     dbt_bluefield_supers_run >> dbt_bluefield_supers_test
 ```
 _______________________________________________________________
+### 2025-02-11 13:29:56 What operator you can use to ingest files from GCS to Big Query
+reference: xxxxx
+
+Step 1 Detect a new file in GCS bucket (source) and load it into BigQuery
+GCSObjectExistenceSensor + GCSToBigQueryOperator
+
+Step 2 Export processed data from BigQuery back to another GCS bucket
+BigQueryToGCSOperator
+
+Step 3 Transfer data from GCS bucket to SFTP server for another team
+SFTPOperator
+_______________________________________________________________
