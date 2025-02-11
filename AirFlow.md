@@ -106,11 +106,11 @@ BigQueryToGCSOperator
 Step 3 Transfer data from GCS bucket to SFTP server for another team
 SFTPOperator
 _______________________________________________________________
-### 2025-02-11 14:25:37 what airflow operator can you use to move data from one bigquery table to another bigquery table?
+### 2025-02-11 14:25:37 what airflow operator can you use to move data from one bigquery table to another bigquery table? What's the library you can use of?
 reference: xxxxx
 
 In Apache Airflow, you can use the **`BigQueryToBigQueryOperator`** to move data from one BigQuery table to another. This operator allows you to copy or append data between tables efficiently.
-
+it's from this libray: airflow.providers.google.cloud.transfers.bigquery_to_bigquery
 #### **Example Usage:**
 
 ```

@@ -412,3 +412,73 @@ reference: [Find Customer Referee](https://leetcode.com/problems/find-customer-r
 
 YES
 _______________________________________________________________
+### 2025-02-11 14:36:32 You have 1000 files from GCS bucket into SFTP, any methods you can think of to improve the preformance?
+reference: xxxxx
+
+**1\. Use Parallel Transfers**
+
+-   Instead of sequentially transferring files, use **multi-threading** or **multi-processing** to transfer multiple files at the same time.
+-   Use Python's `concurrent.futures` or `asyncio` to run multiple upload sessions.
+
+**Example using `ThreadPoolExecutor`:**
+
+```
+python
+CopyEdit
+
+`import concurrent.futures
+from google.cloud import storage
+import paramiko
+
+def upload_to_sftp(file_name):
+    client = storage.Client()
+    bucket = client.bucket("your-bucket-name")
+    blob = bucket.blob(file_name)
+
+    sftp_client = paramiko.SFTPClient.from_transport(paramiko.Transport(("sftp.server.com", 22)))
+    sftp_client.putfo(blob.download_as_bytes(), f"/remote/path/{file_name}")
+    sftp_client.close()
+
+with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+    file_list = ["file1.txt", "file2.txt", ...]  # Replace with actual file names
+    executor.map(upload_to_sftp, file_list)
+`
+
+```
+
+-   Adjust `max_workers` based on your network and SFTP server capacity.
+
+
+
+**2\. Compress Multiple Files Before Transfer**
+
+-   Instead of transferring individual files, **group them into batches** using `.tar.gz` or `.zip`.
+-   **Example:** Archive files before transferring:
+    ```
+    bash
+    CopyEdit
+
+    `tar -czf batch1.tar.gz file1.txt file2.txt file3.txt
+    `
+
+    ```
+
+-   Upload fewer large files instead of many small ones.
+
+
+
+**3\. Use `gsutil -m` for Parallel GCS Downloads**
+
+-   Download all files from GCS to a local machine **in parallel** before sending to SFTP.
+-   Example:
+    ```
+    bash
+    CopyEdit
+
+    `gsutil -m cp -r gs://your-bucket/* /local/path/
+    `
+
+    ```
+
+-   `-m` enables multi-threaded transfer.
+_______________________________________________________________
