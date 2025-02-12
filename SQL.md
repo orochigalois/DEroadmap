@@ -10,3 +10,8 @@ reference: xxxxx
 
 This is cross join, if Weather has 10 rows, then the result will be 10x10=100 rows
 _______________________________________________________________
+# 2025-02-12 17:37:41 sub query
+reference: [197. Rising Temperature](https://leetcode.com/problems/rising-temperature/description/?envType=study-plan-v2&envId=top-sql-50)
+
+xxxxx
+_______________________________________________________________
