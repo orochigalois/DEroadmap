@@ -5,3 +5,8 @@ where LENGTH(string)>15
 print(len(s))
 console.log(s.length);
 _______________________________________________________________
+### 2025-02-12 17:03:25 SELECT * FROM Weather w1, Weather w2
+reference: xxxxx
+
+This is cross join, if Weather has 10 rows, then the result will be 10x10=100 rows
+_______________________________________________________________
