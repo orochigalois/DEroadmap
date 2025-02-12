@@ -6,24 +6,24 @@ https://www.youtube.com/watch?v=5mDutGU24MU&t=22s
 
 https://www.youtube.com/watch?v=T2CS9a63LOM
 
-### 2025-02-07 13:35:11 how to use dbt package dbt-external-tables to ingest a big csv to big query
+# 2025-02-07 13:35:11 how to use dbt package dbt-external-tables to ingest a big csv to big query
 reference: xxxxx
 
 xxxxx
 _______________________________________________________________
 
-### 2025-02-07 21:25:21 What is a DBT Model?
+# 2025-02-07 21:25:21 What is a DBT Model?
 reference: [https://youtu.be/G3t0EF6hMkQ?t=83](https://youtu.be/G3t0EF6hMkQ?t=83)
 
 A DBT model is a .sql file that contains SELECT statements, WITH clauses, or Common Table Expressions (CTEs). When you run a DBT model, a table or view is created based on the materialization property.
 ![alt text](image-7.png)
 _______________________________________________________________
-### 2025-02-07 21:29:28 what is dbt macro
+# 2025-02-07 21:29:28 what is dbt macro
 reference: xxxxx
 
  a macro is a reusable piece of SQL or Jinja code that can be called within dbt models, tests, analyses, or other macros
 _______________________________________________________________
-### 2025-02-08 21:44:16 what will the following incremental modal create in big query?
+# 2025-02-08 21:44:16 what will the following incremental modal create in big query?
 ![alt text](image-3.png)
 reference: xxxxx
 
@@ -33,24 +33,24 @@ before:<br>
 after dbt run:<br>
 ![alt text](image-5.png)
 _______________________________________________________________
-### 2025-02-08 21:55:11 do you use any dbt packages by any chance?
+# 2025-02-08 21:55:11 do you use any dbt packages by any chance?
 reference: xxxxx
 
 dbt_utils – A must-have package that provides utility macros for common transformations like safe casting, generating surrogate keys, pivoting, and unpivoting.
 
 dbt-unit-testing - allows writing unit tests in YAML with mocked inputs and expected outputs.
 _______________________________________________________________
-### 2025-02-08 22:08:30 How to Use dbt_utils.star in dbt?
+# 2025-02-08 22:08:30 How to Use dbt_utils.star in dbt?
 reference: xxxxx
 
 ![alt text](image-6.png)
 _______________________________________________________________
-### 2025-02-09 16:59:40 How to Use dbt_utils.unique_combination_of_columns in dbt?
+# 2025-02-09 16:59:40 How to Use dbt_utils.unique_combination_of_columns in dbt?
 reference: xxxxx
 
 ![alt text](image-10.png)
 _______________________________________________________________
-### 2025-02-08 22:28:44 What's the difference between view and table?
+# 2025-02-08 22:28:44 What's the difference between view and table?
 reference: xxxxx
 
 👉 **A view is not a physical table; it is just a stored query.**
@@ -71,23 +71,23 @@ reference: xxxxx
 ❌ **No indexing or optimization** -- Performance may be worse than a table.
 ❌ **Query cost can increase** -- Every query runs the full SQL, leading to higher BigQuery processing
 _______________________________________________________________
-### 2025-02-09 09:49:05 what is the difference between `dbt run` and `dbt build`?
+# 2025-02-09 09:49:05 what is the difference between `dbt run` and `dbt build`?
 reference: xxxxx
 
 The key difference between `dbt run` and `dbt build` is that `dbt build` is a more comprehensive command that includes `dbt run`, `dbt test`, and `dbt snapshot`, whereas `dbt run` only executes models.
 _______________________________________________________________
-### 2025-02-09 10:00:33 what is `schema` equivalent in bigquery?
+# 2025-02-09 10:00:33 what is `schema` equivalent in bigquery?
 reference: xxxxx
 
 schema is interchangeable with the BigQuery concept dataset
 database is interchangeable with the BigQuery concept of project
 _______________________________________________________________
-### 2025-02-09 11:05:18 what is dbt snapshot?
+# 2025-02-09 11:05:18 what is dbt snapshot?
 reference: [How to use dbt Snapshots to track data history](https://youtu.be/SNtM_RUa5G4?t=469)
 
 `dbt snapshot` is a feature in **dbt** that helps track historical changes in **slowly changing dimensions (SCDs)** within a database. It captures and preserves changes to records over time by maintaining **previous versions** of data whenever updates occur.
 _______________________________________________________________
-### 2025-02-09 12:35:55 what is Jinja templating language
+# 2025-02-09 12:35:55 what is Jinja templating language
 reference: xxxxx
 
 Jinja is a **templating language** used to dynamically generate text, typically **HTML, SQL, or configuration files**. It allows embedding logic, variables, loops, and conditionals inside a text-based document.
@@ -127,7 +127,7 @@ Hello, {{ name }}!
 {% endmacro %}
 ```
 _______________________________________________________________
-### 2025-02-09 15:45:14 What is SQLFluff?
+# 2025-02-09 15:45:14 What is SQLFluff?
 reference: xxxxx
 
 [SQLFluff](https://github.com/sqlfluff/sqlfluff) is an **open-source SQL linter and formatter** that ensures SQL code follows **best practices, style consistency, and readability**.
@@ -137,7 +137,7 @@ It is especially useful for **dbt projects** because it can: ✔ **Lint** SQL mo
 ✔ **Enforce team-wide SQL style guides**
 ✔ **Validate Jinja-templated SQL in dbt models**
 _______________________________________________________________
-### 2025-02-09 16:37:25 How to Run dbt in Debug Mode?
+# 2025-02-09 16:37:25 How to Run dbt in Debug Mode?
 reference: xxxxx
 
 - dbt debug
@@ -145,7 +145,7 @@ reference: xxxxx
 - logs/dbt.log
 - dbt test --debug
 _______________________________________________________________
-### 2025-02-10 11:45:24 {{ source('xx', 'yy') }} vs {{ ref('zzz') }}
+# 2025-02-10 11:45:24 {{ source('xx', 'yy') }} vs {{ ref('zzz') }}
 reference: xxxxx
 
 - source: not managed by DBT, defined in yml like this:

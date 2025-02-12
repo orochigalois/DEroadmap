@@ -1,4 +1,4 @@
-### 2025-02-10 10:38:29 explain the following code
+# 2025-02-10 10:38:29 explain the following code
 reference: xxxxx
 
 ```
@@ -94,7 +94,7 @@ with models.DAG(
     dbt_bluefield_supers_run >> dbt_bluefield_supers_test
 ```
 _______________________________________________________________
-### 2025-02-11 13:29:56 What operator you can use to ingest files from GCS to Big Query
+# 2025-02-11 13:29:56 What operator you can use to ingest files from GCS to Big Query
 reference: xxxxx
 
 Step 1 Detect a new file in GCS bucket (source) and load it into BigQuery
@@ -106,7 +106,7 @@ BigQueryToGCSOperator
 Step 3 Transfer data from GCS bucket to SFTP server for another team
 SFTPOperator
 _______________________________________________________________
-### 2025-02-11 14:25:37 what airflow operator can you use to move data from one bigquery table to another bigquery table? What's the library you can use of?
+# 2025-02-11 14:25:37 what airflow operator can you use to move data from one bigquery table to another bigquery table? What's the library you can use of?
 reference: xxxxx
 
 In Apache Airflow, you can use the **`BigQueryToBigQueryOperator`** to move data from one BigQuery table to another. This operator allows you to copy or append data between tables efficiently.

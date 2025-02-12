@@ -1,12 +1,12 @@
 
-### 2025-02-06 22:17:21 [GCP Data Engineer Mock interview](https://www.youtube.com/watch?v=qZwffdeu1sY)
+# 2025-02-06 22:17:21 [GCP Data Engineer Mock interview](https://www.youtube.com/watch?v=qZwffdeu1sY)
 reference:xxxxx
 xxxxx
 _______________________________________________________________
-### 2025-02-06 22:07:45 Could you please explain the high-level architecture of BigQuery?
+# 2025-02-06 22:07:45 Could you please explain the high-level architecture of BigQuery?
 BigQuery is a data warehousing tool designed for analytical purposes. It has a ***separation of storage and compute***, meaning they operate independently. BigQuery uses ***columnar storage*** (OLAP) instead of traditional row-based (OLTP) storage. This enables efficient querying because it ***scans only the specific columns needed***, improving performance.
 _______________________________________________________________
-### 2025-02-06 22:12:05 Do i need to add index in big query table to get a faster query speed?
+# 2025-02-06 22:12:05 Do i need to add index in big query table to get a faster query speed?
 No, you do not need to add traditional indexes in BigQuery. BigQuery is a columnar, distributed data warehouse that automatically optimizes query performance through its architecture. It handles data storage and retrieval differently from traditional relational databases.
 
 For Faster Query Performance:
@@ -16,7 +16,7 @@ Denormalization: Flatten your data where possible to reduce complex joins.
 Materialized Views: Use materialized views for pre-aggregated data.
 Query Optimization: Optimize SQL queries with proper filtering, avoiding SELECT *, and using approximate aggregation functions like APPROX_COUNT_DISTINCT.
 _______________________________________________________________
-### 2025-02-06 22:13:29 why we have both where and having in sql
+# 2025-02-06 22:13:29 why we have both where and having in sql
 reference: https://www.youtube.com/watch?v=BHwzDmr6d7s&t=1s
 
 *WHERE Clause:*
@@ -34,25 +34,25 @@ FROM employees
 GROUP BY department
 HAVING COUNT(*) > 10;
 _______________________________________________________________
-### 2025-02-06 22:16:06 how many ways to Load Data from GCS to BigQuery
+# 2025-02-06 22:16:06 how many ways to Load Data from GCS to BigQuery
 reference:[https://medium.com/@santosh_beora/loading-data-from-gcs-to-bigquery-a-comprehensive-guide-62b5d3abea53](https://medium.com/@santosh_beora/loading-data-from-gcs-to-bigquery-a-comprehensive-guide-62b5d3abea53)
 xxxxx
 _______________________________________________________________
-### 2025-02-06 22:19:54 How can we optimize performance in BigQuery?
+# 2025-02-06 22:19:54 How can we optimize performance in BigQuery?
 reference: xxxxx
 
 Partitioning: Organize large tables by date or other logical partitions to reduce the amount of data scanned.
 Clustering: Group related data together to improve query performance when filtering by clustered columns.
 Query Optimization: Use filters (WHERE conditions), avoid SELECT *, and limit data processed.
 _______________________________________________________________
-### 2025-02-06 22:20:46 In terms of cost optimization, how can we save costs in BigQuery?
+# 2025-02-06 22:20:46 In terms of cost optimization, how can we save costs in BigQuery?
 reference: [Cost optimization best practices for BigQuery](https://www.youtube.com/watch?v=cZgTavxWO2k)
 
 Reserved Slots: Purchase slots in advance for predictable workloads to reduce costs.
 Optimize Queries: Use partitioning and clustering to reduce data scanned.
 Storage Optimization: Move rarely accessed data to cheaper storage like Cloud Storage (Nearline/Coldline).
 _______________________________________________________________
-### 2025-02-06 23:08:11 For example, if we have thousands of datasets and tables that people are not using anymore, how can we identify the unused datasets and tables? What would be your action plan and point of view to save costs in such cases?
+# 2025-02-06 23:08:11 For example, if we have thousands of datasets and tables that people are not using anymore, how can we identify the unused datasets and tables? What would be your action plan and point of view to save costs in such cases?
 reference: xxxxx
 
 1. Identify Unused Tables:
@@ -63,13 +63,13 @@ reference: xxxxx
 - Archive unused tables to Cloud Storage (Nearline or Coldline) to reduce costs.
 - Regularly review and clean up unused datasets.
 _______________________________________________________________
-### 2025-02-07 21:20:36 how to use `bq load` ingest a 2G csv into bigquery
+# 2025-02-07 21:20:36 how to use `bq load` ingest a 2G csv into bigquery
 reference: xxxxx
 
 ![alt text](image-2.png)
 xxxxx
 _______________________________________________________________
-### 2025-02-09 18:16:56 What are Slots in BigQuery?
+# 2025-02-09 18:16:56 What are Slots in BigQuery?
 reference: xxxxx
 
 A slot in Google BigQuery is a unit of computational capacity that BigQuery uses to process queries.
@@ -162,7 +162,7 @@ OPTIONS (resource_group='my_reservation');
 ✔ **Monitor slot usage in BigQuery UI** → Identify **slow queries**.
 ✔ **Consider Flex Slots for cost savings** if running heavy queries.
 _______________________________________________________________
-### 2025-02-09 20:13:50 Difference Between a Normal View and a Materialized View in BigQuery
+# 2025-02-09 20:13:50 Difference Between a Normal View and a Materialized View in BigQuery
 reference: [STANDARD vs. MATERIALIZED views in SQL | BigQuery](https://www.youtube.com/watch?v=wnFBAE4auVc&t=121s)
 
 **🔹 1️⃣ Normal View (Standard View)**
@@ -222,7 +222,7 @@ GROUP BY customer_id;
 -   **🔄 Freshness:** **Not real-time** (MV updates automatically but on a schedule).
 -   **⚙️ Indexing & Partitioning:** **Supports clustering and partitioning**.
 _______________________________________________________________
-### 2025-02-09 21:06:02 why APPROX_COUNT_DISTINCT can speed up query?
+# 2025-02-09 21:06:02 why APPROX_COUNT_DISTINCT can speed up query?
 reference: xxxxx
 
 In BigQuery, `APPROX_COUNT_DISTINCT` is a **faster alternative** to `COUNT(DISTINCT column)`, and it speeds up queries because:
@@ -291,7 +291,7 @@ FROM my_dataset.events;
 | ✅ Working with **large datasets** | `APPROX_COUNT_DISTINCT(column)` |
 | ✅ Need **real-time analytics** | `APPROX_COUNT_DISTINCT(column)` |
 _______________________________________________________________
-### 2025-02-09 21:16:15 What is an Authorized View?
+# 2025-02-09 21:16:15 What is an Authorized View?
 reference: xxxxx
 
 An **Authorized View** allows you to **securely share specific columns or rows** from a dataset **without granting full access** to the base table.
@@ -330,7 +330,7 @@ CopyEdit
 -   **Users can query the view** without accessing the base table.
 -   **Data is always fresh** (query runs in real-time).
 _______________________________________________________________
-### 2025-02-09 21:29:14 how can I only expose the authorised view to the user but hide the table
+# 2025-02-09 21:29:14 how can I only expose the authorised view to the user but hide the table
 reference: xxxxx
 
 **🔹 1️⃣ Remove Direct Access to `my_dataset.customers`**
@@ -375,7 +375,7 @@ CopyEdit
 
 📌 **Now, the user can only see `auth_view_customer`, not the `customers` table**.
 _______________________________________________________________
-### 2025-02-10 12:33:05 Partitioning vs Clustering in BigQuery
+# 2025-02-10 12:33:05 Partitioning vs Clustering in BigQuery
 reference: xxxxx
 
 | Feature | Partitioning | Clustering |
@@ -402,17 +402,17 @@ reference: xxxxx
 | **Performance Boost** | If queries filter on **partition column** | If queries filter/sort on **clustered columns** |
 | --- |  --- |  --- |
 _______________________________________________________________
-### 2025-02-10 12:38:15 is it possible to createa partitioning on 'string' type column in bigquery?
+# 2025-02-10 12:38:15 is it possible to createa partitioning on 'string' type column in bigquery?
 reference: xxxxx
 
 No, BigQuery does not support partitioning on a STRING column directly. Partitioning is only supported on DATE, TIMESTAMP, DATETIME, or INTEGER columns.
 _______________________________________________________________
-### 2025-02-10 22:29:42 I know MySQL uses three-valued logic -- TRUE, FALSE and UNKNOWN. Anything compared to NULL evaluates to the third value: UNKNOWN. That “anything” includes NULL itself! That’s why MySQL provides the IS NULL and IS NOT NULL operators to specifically check for NULL. My question is , is the big query having the same feature?
+# 2025-02-10 22:29:42 I know MySQL uses three-valued logic -- TRUE, FALSE and UNKNOWN. Anything compared to NULL evaluates to the third value: UNKNOWN. That “anything” includes NULL itself! That’s why MySQL provides the IS NULL and IS NOT NULL operators to specifically check for NULL. My question is , is the big query having the same feature?
 reference: [Find Customer Referee](https://leetcode.com/problems/find-customer-referee/?envType=study-plan-v2&envId=top-sql-50)
 
 YES
 _______________________________________________________________
-### 2025-02-11 14:36:32 You have 1000 files to load from GCS bucket into SFTP, any methods you can think of to improve the preformance?
+# 2025-02-11 14:36:32 You have 1000 files to load from GCS bucket into SFTP, any methods you can think of to improve the preformance?
 reference: xxxxx
 
 **1\. Use Parallel Transfers**
@@ -482,7 +482,7 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
 
 -   `-m` enables multi-threaded transfer.
 _______________________________________________________________
-### 2025-02-11 14:39:56 When you upload 1000 files from GCS bucket into SFTP, let's say the SFTP is unstable, means sometimes connection drops, what machanism you can design the solve this?
+# 2025-02-11 14:39:56 When you upload 1000 files from GCS bucket into SFTP, let's say the SFTP is unstable, means sometimes connection drops, what machanism you can design the solve this?
 reference: xxxxx
 
 ### **1\. Implement a Retry Mechanism for Failures**
@@ -493,8 +493,6 @@ reference: xxxxx
 #### **Example: Python Retry Logic with `tenacity`**
 
 ```
-python
-CopyEdit
 
 `import paramiko
 import time

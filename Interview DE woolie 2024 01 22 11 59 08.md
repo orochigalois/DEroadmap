@@ -1,4 +1,4 @@
-### 2025-02-09 13:05:30 this is more like a think of this as a scenario like a you know what if um so let's say you have a ticket which comes to you and it says on our dashboard there's duplicate customers so how would you responds to that ticket as a data engineer
+# 2025-02-09 13:05:30 this is more like a think of this as a scenario like a you know what if um so let's say you have a ticket which comes to you and it says on our dashboard there's duplicate customers so how would you responds to that ticket as a data engineer
 reference: xxxxx
 
 - start by checking the SQL queries or logic behind the dashboard to see how the customer data is being aggregated or filtered
@@ -7,7 +7,7 @@ reference: xxxxx
 - data source is wrong, have duplicate row, need to communicate with the other squad, let them know
 - ETL pipeline has a bug
 _______________________________________________________________
-### 2025-02-09 14:37:39 are there any aspects of DBT which might be able to help you in looking this issue
+# 2025-02-09 14:37:39 are there any aspects of DBT which might be able to help you in looking this issue
 
 reference: xxxxx
 
@@ -18,7 +18,7 @@ reference: xxxxx
 ![alt text](image-8.png)
 
 _______________________________________________________________
-### 2025-02-09 16:47:07 say if you've got a junior developer on your team and they saw the issue and they just want to delete the duplicate customers so as a senior data engineer, how would you coach or respond to your Junior teammate who just wants to just delete the duplicate rows, what would you say
+# 2025-02-09 16:47:07 say if you've got a junior developer on your team and they saw the issue and they just want to delete the duplicate customers so as a senior data engineer, how would you coach or respond to your Junior teammate who just wants to just delete the duplicate rows, what would you say
 reference: xxxxx
 
 
