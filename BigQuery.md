@@ -101,12 +101,9 @@ Slot reservation allows you to **buy and allocate slots** to control query perfo
 
 If your queries are **slow due to high demand**, you can reserve slots:
 
-```
-sh
-CopyEdit
+```sh
 
-`bq mk --reservation --project_id=my_project --slots=500 my_reservation
-`
+bq mk --reservation --project_id=my_project --slots=500 my_reservation
 
 ```
 
@@ -116,13 +113,10 @@ CopyEdit
 
 You can force a query to use a specific reservation:
 
-```
-sql
-CopyEdit
+```sql
 
-`SELECT * FROM my_dataset.my_table
+SELECT * FROM my_dataset.my_table
 OPTIONS (resource_group='my_reservation');
-`
 
 ```
 
@@ -172,15 +166,14 @@ A **normal view** in BigQuery is a **logical layer** that stores **only the quer
 
 ### **📌 Example: Creating a Normal View**
 
-```
-sql
-CopyEdit
+```sql
 
-`CREATE VIEW my_dataset.customer_view AS
+
+CREATE VIEW my_dataset.customer_view AS
 SELECT customer_id, name, total_spent
 FROM my_dataset.customers
 WHERE total_spent > 100;
-`
+
 
 ```
 
@@ -202,15 +195,14 @@ Instead of recomputing the query every time, **BigQuery reads the precomputed re
 
 ### **📌 Example: Creating a Materialized View**
 
-```
-sql
-CopyEdit
+```sql
 
-`CREATE MATERIALIZED VIEW my_dataset.mv_customer_summary AS
+
+CREATE MATERIALIZED VIEW my_dataset.mv_customer_summary AS
 SELECT customer_id, COUNT(*) AS order_count, SUM(total_spent) AS total_spent
 FROM my_dataset.orders
 GROUP BY customer_id;
-`
+
 
 ```
 
@@ -251,13 +243,10 @@ In BigQuery, `APPROX_COUNT_DISTINCT` is a **faster alternative** to `COUNT(DISTI
 
 #### **1️⃣ Normal `COUNT(DISTINCT)`**
 
-```
-sql
-CopyEdit
+```sql
 
-`SELECT COUNT(DISTINCT user_id)
+SELECT COUNT(DISTINCT user_id)
 FROM my_dataset.events;
-`
 
 ```
 
@@ -266,13 +255,10 @@ FROM my_dataset.events;
 
 #### **2️⃣ Faster `APPROX_COUNT_DISTINCT`**
 
-```
-sql
-CopyEdit
+```sql
 
-`SELECT APPROX_COUNT_DISTINCT(user_id)
+SELECT APPROX_COUNT_DISTINCT(user_id)
 FROM my_dataset.events;
-`
 
 ```
 
@@ -300,27 +286,24 @@ An **Authorized View** allows you to **securely share specific columns or rows**
 
 Let's say **we have a `customers` table**, but we **only want to share `customer_id` and `name`** with external users.
 
-```
-sql
-CopyEdit
+```sql
 
-`CREATE VIEW my_dataset.auth_view_customer AS
+
+CREATE VIEW my_dataset.auth_view_customer AS
 SELECT customer_id, name
 FROM my_dataset.customers;
-`
+
 
 ```
 
 Now, **grant access to the view** without exposing the full table:
 
-```
-sh
-CopyEdit
+```sh
 
-`bq add-iam-policy-binding my_project:my_dataset\
+bq add-iam-policy-binding my_project:my_dataset\
   --member=user:external_user@gmail.com\
   --role=roles/bigquery.dataViewer
-`
+
 
 ```
 
@@ -342,9 +325,7 @@ By default, if the user has `roles/bigquery.dataViewer` on `my_dataset`, they ca
 
 To **remove their access to the base table (`customers`)**:
 
-```
-sh
-CopyEdit
+```sh
 
 `bq remove-iam-policy-binding my_project:my_dataset\
    --member=user:external_user@gmail.com\
@@ -362,14 +343,11 @@ CopyEdit
 
 Now, **grant access to just the Authorized View (`auth_view_customer`)**:
 
-```
-sh
-CopyEdit
+```sh
 
-`bq add-iam-policy-binding my_project:my_dataset.auth_view_customer\
+bq add-iam-policy-binding my_project:my_dataset.auth_view_customer\
    --member=user:external_user@gmail.com\
    --role=roles/bigquery.dataViewer
-`
 
 ```
 
@@ -422,9 +400,7 @@ reference: xxxxx
 
 **Example using `ThreadPoolExecutor`:**
 
-```
-python
-CopyEdit
+```python
 
 `import concurrent.futures
 from google.cloud import storage
@@ -454,9 +430,8 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
 
 -   Instead of transferring individual files, **group them into batches** using `.tar.gz` or `.zip`.
 -   **Example:** Archive files before transferring:
-    ```
-    bash
-    CopyEdit
+    ```bash
+    
 
     `tar -czf batch1.tar.gz file1.txt file2.txt file3.txt
     `
@@ -471,9 +446,8 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
 
 -   Download all files from GCS to a local machine **in parallel** before sending to SFTP.
 -   Example:
-    ```
-    bash
-    CopyEdit
+    ```bash
+    
 
     `gsutil -m cp -r gs://your-bucket/* /local/path/
     `
@@ -587,9 +561,8 @@ for file_name in file_list:
 
 1.  **Publish file names to a queue**:
 
-    ```
-    python
-    CopyEdit
+    ```python
+    
 
     `from google.cloud import pubsub_v1
 
@@ -604,9 +577,8 @@ for file_name in file_list:
 
 2.  **Worker retrieves files and uploads them**:
 
-    ```
-    python
-    CopyEdit
+    ```python
+    
 
     `from google.cloud import pubsub_v1
 
@@ -637,9 +609,8 @@ for file_name in file_list:
 
 -   If the SFTP server allows SSH, **`rsync` can resume transfers** when interrupted.
 -   **Command Example**:
-    ```
-    bash
-    CopyEdit
+    ```bash
+    
 
     `rsync -avz --partial --progress /local/path/ user@sftp.server:/remote/path/
     `

@@ -1,7 +1,7 @@
 # 2025-02-10 10:38:29 explain the following code
 reference: xxxxx
 
-```
+```python
 """
 This DAG is to execute the DBT bluefield supers model, it is deployed via the
 KubernetesPodOperator into the Composer Cluster for execution.
@@ -113,7 +113,7 @@ In Apache Airflow, you can use the **`BigQueryToBigQueryOperator`** to move data
 it's from this libray: airflow.providers.google.cloud.transfers.bigquery_to_bigquery
 #### **Example Usage:**
 
-```
+```python
 from airflow.providers.google.cloud.transfers.bigquery_to_bigquery import BigQueryToBigQueryOperator
 
 move_bq_table = BigQueryToBigQueryOperator(
