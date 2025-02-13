@@ -137,3 +137,88 @@ move_bq_table = BigQueryToBigQueryOperator(
     -   `"WRITE_EMPTY"`: Fails if the destination table is not empty.
 -   `create_disposition`: `"CREATE_IF_NEEDED"` ensures the destination table is created if it doesn't exist.
 _______________________________________________________________
+# 2025-02-13 17:13:02 in airflow, team A has a DAG_A, I'm in team B, and I need to write a DAG which only when DAG_A is successfully executed, my DAG_B can be triggered, what can I design in this case?
+reference: xxxxx
+
+### **Solution 1: Using `ExternalTaskSensor` (Recommended)**
+
+This sensor waits for a specific task in **DAG\_A** to complete before proceeding with **DAG\_B**.
+
+```python
+
+`from airflow.sensors.external_task import ExternalTaskSensor
+from airflow import DAG
+from airflow.operators.dummy import DummyOperator
+from datetime import datetime, timedelta
+
+default_args = {
+    'owner': 'team_B',
+    'depends_on_past': False,
+    'start_date': datetime(2024, 2, 13),
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5),
+}
+
+dag_b = DAG(
+    'DAG_B',
+    default_args=default_args,
+    schedule_interval=None,  # Set it to None if triggered by DAG_A
+    catchup=False,
+)
+
+wait_for_dag_a = ExternalTaskSensor(
+    task_id='wait_for_dag_a',
+    external_dag_id='DAG_A',  # The DAG_A to wait for
+    external_task_id=None,  # Wait for the entire DAG_A to finish
+    mode='poke',  # You can also use 'reschedule'
+    timeout=3600,  # Adjust timeout as needed
+    allowed_states=['success'],
+    failed_states=['failed', 'skipped'],
+    dag=dag_b,
+)
+
+start_task = DummyOperator(task_id='start_task', dag=dag_b)
+
+wait_for_dag_a >> start_task
+`
+
+```
+
+-   This ensures **DAG\_B** only runs after **DAG\_A** has successfully completed.
+-   You can customize it to wait for a specific task in **DAG\_A** instead of the whole DAG.
+
+
+
+### **Solution 2: Using `TriggerDagRunOperator`**
+
+If **Team A** can modify **DAG\_A**, they can use `TriggerDagRunOperator` to start **DAG\_B** after **DAG\_A** completes.
+
+In **DAG\_A**:
+
+```python
+
+
+`from airflow.operators.trigger_dagrun import TriggerDagRunOperator
+
+trigger_dag_b = TriggerDagRunOperator(
+    task_id="trigger_dag_b",
+    trigger_dag_id="DAG_B",
+    wait_for_completion=False,  # Set to True if you need to wait for DAG_B to finish
+    dag=dag_a,
+)
+`
+
+```
+
+This will automatically trigger **DAG\_B** once **DAG\_A** completes.
+
+
+### **Choosing Between the Two**
+
+-   **Use `ExternalTaskSensor`** if **Team A cannot modify DAG\_A**.
+-   **Use `TriggerDagRunOperator`** if **Team A agrees to trigger DAG\_B**.
+
+### **Solution 3: trigger file**
+
+Once your data ready, send the trigger file to GCS buckets or something and then the downstream can check the file to know it's ready to consume
+_______________________________________________________________
