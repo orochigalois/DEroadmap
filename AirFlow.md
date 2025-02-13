@@ -220,5 +220,9 @@ This will automatically trigger **DAG\_B** once **DAG\_A** completes.
 
 ### **Solution 3: trigger file**
 
-Once your data ready, send the trigger file to GCS buckets or something and then the downstream can check the file to know it's ready to consume
+Once your data ready, send the trigger file to GCS buckets or something and then the downstream can check this touch file to know it's ready to consume
+
+### **Solution 4: use a central table**
+
+use a central table to store all the status of table update. Kind of like a log table. If the table refresh, we write one more entry over there. Tell people that this table is ready to load
 _______________________________________________________________
