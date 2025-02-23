@@ -22,16 +22,8 @@ _______________________________________________________________
 reference: xxxxx
 
  a macro is a reusable piece of SQL or Jinja code that can be called within dbt models, tests, analyses, or other macros
-_______________________________________________________________
-# 2025-02-08 21:44:16 what will the following incremental modal create in big query?
-![alt text](image-3.png)
-reference: xxxxx
 
-by default, dbt uses Append-Only strategy, New records are inserted without checking for duplicates.<br>
-before:<br>
-![alt text](image-4.png) 
-after dbt run:<br>
-![alt text](image-5.png)
+
 _______________________________________________________________
 # 2025-02-08 21:55:11 do you use any dbt packages by any chance?
 reference: xxxxx
@@ -153,3 +145,20 @@ reference: xxxxx
 
 - ref: reference DBT models that are managed and created by DBT, defined in models/
 _______________________________________________________________
+# 2025-02-23 11:01:44 what will the following incremental modal create in big query?
+![alt text](image-3.png)
+
+keywords:
+xxx
+xxx
+xxx
+
+reference: xxxxx
+
+by default, dbt uses Append-Only strategy, New records are inserted without checking for duplicates.<br>
+before:<br>
+![alt text](image-4.png) <br>
+after dbt run:<br>
+![alt text](image-5.png) <br>
+_______________________________________________________________
+
