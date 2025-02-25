@@ -15,3 +15,21 @@ reference: [197. Rising Temperature](https://leetcode.com/problems/rising-temper
 
 xxxxx
 _______________________________________________________________
+# 2025-02-23 11:46:27 what is union in sql?
+keywords:
+must same number of columns
+data types should match
+
+reference: xxxxx
+
+❌ Incorrect (Mismatched Data Types)
+SELECT id, salary FROM employees_a  -- id (INTEGER), salary (FLOAT)
+UNION
+SELECT emp_id, department FROM employees_b; -- emp_id (INTEGER), department (VARCHAR)
+
+✅ Fix: Use CAST()
+SELECT id, CAST(salary AS VARCHAR) FROM employees_a
+UNION
+SELECT emp_id, department FROM employees_b;
+
+_______________________________________________________________
