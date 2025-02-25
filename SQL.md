@@ -33,3 +33,12 @@ UNION
 SELECT emp_id, department FROM employees_b;
 
 _______________________________________________________________
+# 2025-02-25 15:54:44 difference between UNION and UNION ALL in SQL
+keywords:
+duplicate
+
+reference: xxxxx
+
+UNION: Removes duplicate rows
+UNION ALL: Does not remove duplicates; all rows from the queries are included.
+_______________________________________________________________
