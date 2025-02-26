@@ -42,3 +42,12 @@ reference: xxxxx
 UNION: Removes duplicate rows
 UNION ALL: Does not remove duplicates; all rows from the queries are included.
 _______________________________________________________________
+# 2025-02-27 10:11:32 difference between count(*) and count(id) in SQL
+keywords:
+null
+
+reference: xxxxx
+
+count(*): null will be counted
+count(id): null will ***not*** be counted
+_______________________________________________________________
