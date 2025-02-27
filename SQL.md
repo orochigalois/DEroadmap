@@ -51,3 +51,11 @@ reference: xxxxx
 count(*): null will be counted
 count(id): null will ***not*** be counted
 _______________________________________________________________
+# 2025-02-27 13:21:57 what is the join type for "table A JOIN table B" in SQL?
+keywords:
+inner join
+
+reference: xxxxx
+
+When you write a query like "table A JOIN table B" in SQL without explicitly specifying the type of join, it defaults to an INNER JOIN.
+_______________________________________________________________
