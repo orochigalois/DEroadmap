@@ -78,3 +78,16 @@ SELECT
 FROM employees;
 
 _______________________________________________________________
+# 2025-02-28 21:39:13 what is the result?
+keywords:
+xxx
+xxx
+xxx
+
+reference: xxxxx
+
+select ifnull(2/0,0)
+select 2/0
+select 2/null
+select sum(null)
+_______________________________________________________________
