@@ -59,3 +59,22 @@ reference: xxxxx
 
 When you write a query like "table A JOIN table B" in SQL without explicitly specifying the type of join, it defaults to an INNER JOIN.
 _______________________________________________________________
+# 2025-02-28 21:38:14 how to use case in SQL?
+keywords:
+case end
+when then
+else
+
+reference: xxxxx
+
+SELECT 
+    employee_name,
+    salary,
+    CASE 
+        WHEN salary > 100000 THEN 'High Salary'
+        WHEN salary BETWEEN 50000 AND 100000 THEN 'Medium Salary'
+        ELSE 'Low Salary'
+    END AS salary_category
+FROM employees;
+
+_______________________________________________________________
